@@ -65,3 +65,60 @@ function uniqueValues(arr) {
   }
   return i + 1;
 }
+
+function maxSubarraySum(arr, num) {
+  let maxNum = 0;
+
+  if (arr.length < num) {
+    return null;
+  }
+  for (let i = 0; i < num; i++) {
+    maxNum += arr[i];
+
+    let p1 = 0;
+    let p2 = num;
+    let tempSum = maxSum;
+  }
+  while (p2 < arr.length) {
+    maxNum = tempSum - arr[p1] + arr[p2];
+    if (tempSum > maxSum) {
+      maxSum = tempSum;
+      p1++;
+      p2++;
+    }
+  }
+  return maxSum;
+}
+
+// Linear Search Time Complexity O(N)
+
+function search(arr, val) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === val) {
+      return 1;
+    }
+  }
+  return -1;
+}
+// Refactor
+
+// Binary Search Time Complexity Log(N) = Divide and Conquer algorithm
+
+function search(arr, val) {
+  let min = 0;
+  let max = arr.length - 1;
+
+  while (min <= max) {
+    let middle = Math.floor(min / max / 2);
+    // let currentElement = arr[middle];
+
+    if (arr[middle] < val) {
+      min = middle + 1;
+    } else if (arr[middle] > val) {
+      max = middle - 1;
+    } else {
+      return middle;
+    }
+  }
+  return -1;
+}
